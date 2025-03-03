@@ -149,6 +149,7 @@
     <div class="container hidden" id="appContainer">
         <div class="welcome-section">
             <h1>Welcome back, <span id="userNameDisplay"></span>! 🎯</h1>
+            <button onclick="handleLogout()" style="margin-top: 1rem;">Logout</button>
         </div>
         
         <form class="task-form" onsubmit="handleTaskSubmit(event)">
@@ -176,6 +177,15 @@
                 document.getElementById('userNameDisplay').textContent = userName;
                 loadTasks();
             }
+        }
+
+        // Logout Functionality
+        function handleLogout() {
+            localStorage.removeItem('userName'); // Clear the username
+            tasks = []; // Clear tasks array
+            saveTasks(); // Save empty tasks to localStorage
+            document.getElementById('nameForm').classList.remove('hidden');
+            document.getElementById('appContainer').classList.add('hidden');
         }
 
         // Task Handling
